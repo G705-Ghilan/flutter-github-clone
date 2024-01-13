@@ -294,5 +294,3 @@ lib/
 
 </details>
 
-#   f l u t t e r - g i t h u b - c l o n e  
- 
