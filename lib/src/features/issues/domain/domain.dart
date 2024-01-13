@@ -1,0 +1,10 @@
+export 'entities/comment.dart';
+export 'entities/comments.dart';
+export 'entities/issue.dart';
+export 'entities/issues.dart';
+export 'entities/label.dart';
+export 'repository/issues_repository.dart';
+export 'usecases/get_comments.dart';
+export 'usecases/get_more_comments.dart';
+export 'usecases/get_issues.dart';
+export 'usecases/get_more_issues.dart';
