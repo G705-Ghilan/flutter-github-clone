@@ -47,14 +47,13 @@ class RepositoryPage extends StatelessWidget {
                         trailing: repoInfo.issues.str,
                         onTap: () {
                           context.pushNamed(
-                            "issues",
+                            RouteName.issues.name,
                             queryParameters: {
                               "username": repoInfo.ownerName,
                               "repository": repoInfo.name,
                               "count": repoInfo.issues.toString(),
                             },
                           );
-
                         },
                       ),
                       TileButton(
@@ -62,7 +61,7 @@ class RepositoryPage extends StatelessWidget {
                         title: "Contributors",
                         onTap: () {
                           context.pushNamed(
-                            "users",
+                            RouteName.users.name,
                             queryParameters: {
                               "username": repoInfo.ownerName,
                               "repository": repoInfo.name,

@@ -91,7 +91,7 @@ class RepositoryInfo extends StatelessWidget {
                   text: "Stars",
                   onTap: () {
                     context.pushNamed(
-                      "users",
+                      RouteName.users.name,
                       queryParameters: {
                         "username": repoInfo.ownerName,
                         "repository": repoInfo.name,
@@ -113,7 +113,7 @@ class RepositoryInfo extends StatelessWidget {
                   text: "Forks",
                   onTap: () {
                     context.pushNamed(
-                      "repositories",
+                      RouteName.repositories.name,
                       queryParameters: {
                         "username": repoInfo.ownerName,
                         "repository": repoInfo.name,
@@ -131,7 +131,7 @@ class RepositoryInfo extends StatelessWidget {
                   text: "Watchers",
                   onTap: () {
                     context.pushNamed(
-                      "users",
+                      RouteName.users.name,
                       queryParameters: {
                         "username": repoInfo.ownerName,
                         "repository": repoInfo.name,

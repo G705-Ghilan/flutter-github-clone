@@ -94,7 +94,7 @@ class ProfileInfo extends StatelessWidget {
                   text: "Followers",
                   onTap: () {
                     context.pushNamed(
-                      "users",
+                      RouteName.users.name,
                       queryParameters: {
                         "username": user.login,
                         "usersType": UsersType.followers.index.toString(),
@@ -115,7 +115,7 @@ class ProfileInfo extends StatelessWidget {
                   text: "Following",
                   onTap: () {
                     context.pushNamed(
-                      "users",
+                      RouteName.users.name,
                       queryParameters: {
                         "username": user.login,
                         "usersType": UsersType.following.index.toString(),

@@ -159,7 +159,7 @@ class UserProfile extends StatelessWidget {
                         trailing: user.repositories.str,
                         onTap: () {
                           context.pushNamed(
-                            "repositories",
+                            RouteName.repositories.name,
                             queryParameters: {
                               "username": user.login,
                               "reposType": ReposType.userRepos.index.toString(),
@@ -173,7 +173,7 @@ class UserProfile extends StatelessWidget {
                         title: "Starred",
                         onTap: () {
                           context.pushNamed(
-                            "repositories",
+                            RouteName.repositories.name,
                             queryParameters: {
                               "username": user.login,
                               "reposType":

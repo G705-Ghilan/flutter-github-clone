@@ -4,17 +4,36 @@ import 'package:github_clone/src/features/features.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+enum RouteName {
+  signin("/"),
+  profile("/profile/:username"),
+  repositories("/repositories"),
+  users("/users"),
+  issues("/issues"),
+  contents("/contents/:username/:repository");
+
+  final String path;
+  const RouteName(this.path);
+}
+
 final router = GoRouter(
   initialLocation: "/profile/<DUSER>",
   redirect: (context, state) {
-    if (sl<SharedPreferences>().getString("token") == null) {
-      return "/signin";
-    }
-    return null;
+    final bool isSignedIn = sl<SharedPreferences>().getString("token") != null;
+    return isSignedIn ? null : RouteName.signin.path;
   },
   routes: [
     GoRoute(
-      path: "/profile/:username",
+      path: RouteName.signin.path,
+      name: RouteName.signin.name,
+      pageBuilder: (context, state) => CupertinoPage(
+        key: state.pageKey,
+        child: const AuthPage(),
+      ),
+    ),
+    GoRoute(
+      path: RouteName.profile.path,
+      name: RouteName.profile.name,
       pageBuilder: (context, state) {
         return CupertinoPage(
           key: state.pageKey,
@@ -24,10 +43,9 @@ final router = GoRouter(
         );
       },
     ),
-    // dynamic page route
     GoRoute(
-      path: "/users",
-      name: "users",
+      path: RouteName.users.path,
+      name: RouteName.users.name,
       pageBuilder: (context, GoRouterState state) {
         final Map<String, String> query = state.uri.queryParameters;
         return CupertinoPage(
@@ -44,10 +62,9 @@ final router = GoRouter(
         );
       },
     ),
-
     GoRoute(
-      path: "/repositories",
-      name: "repositories",
+      path: RouteName.repositories.path,
+      name: RouteName.repositories.name,
       pageBuilder: (context, state) {
         final Map<String, String> query = state.uri.queryParameters;
 
@@ -65,10 +82,9 @@ final router = GoRouter(
         );
       },
     ),
-
     GoRoute(
-      path: "/issues",
-      name: "issues",
+      path: RouteName.issues.path,
+      name: RouteName.issues.name,
       pageBuilder: (context, state) {
         final Map<String, String> query = state.uri.queryParameters;
 
@@ -85,9 +101,9 @@ final router = GoRouter(
         );
       },
     ),
-
     GoRoute(
-      path: "/contents/:username/:repository",
+      path: RouteName.contents.path,
+      name: RouteName.contents.name,
       pageBuilder: (context, state) {
         final extra = state.extra as List<dynamic>;
 
@@ -103,13 +119,6 @@ final router = GoRouter(
           ),
         );
       },
-    ),
-    GoRoute(
-      path: "/signin",
-      pageBuilder: (context, state) => CupertinoPage(
-        key: state.pageKey,
-        child: const AuthPage(),
-      ),
     ),
   ],
 );

@@ -40,7 +40,7 @@ class CustomSearchBar extends SearchDelegate {
           ),
           onTap: () {
             context.pushNamed(
-              "users",
+              RouteName.users.name,
               queryParameters: {
                 "usersType": UsersType.search.index.toString(),
                 "query": query.trim(),
@@ -57,7 +57,7 @@ class CustomSearchBar extends SearchDelegate {
           ),
           onTap: () {
             context.pushNamed(
-              "issues",
+              RouteName.issues.name,
               queryParameters: {"query": query.trim()},
             );
           },
@@ -71,7 +71,7 @@ class CustomSearchBar extends SearchDelegate {
           ),
           onTap: () {
             context.pushNamed(
-              "repositories",
+              RouteName.repositories.name,
               queryParameters: {
                 "query": query.trim(),
                 "reposType": ReposType.search.index.toString(),
