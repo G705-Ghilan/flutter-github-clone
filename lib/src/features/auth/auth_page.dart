@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:github_clone/dependencies_injection.dart';
 import 'package:github_clone/src/core/core.dart';
 import 'package:github_sign_in_plus/github_sign_in_plus.dart';
 import 'package:go_router/go_router.dart';
@@ -35,7 +36,7 @@ class _AuthPageState extends State<AuthPage> {
             final prefs = sl<SharedPreferences>();
 
             await prefs.setString("token", result.token!).then((_) async {
-              await servicesInit();
+              await serviceLocator();
               context.go("/profile/<DUSER>");
             });
           }

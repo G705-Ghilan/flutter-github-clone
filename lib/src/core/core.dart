@@ -6,7 +6,6 @@ export 'error/get_failure_message.dart';
 export 'extensions/extensions.dart';
 export 'loginfo/loginfo.dart';
 export 'router/router.dart';
-export 'services/services.dart';
 export 'theme/theme.dart';
 export 'usecases/usecase.dart';
 export 'widgets/widgets.dart';

@@ -22,7 +22,7 @@ class RemoteCodeDataSourceImpl implements RemoteCodeDataSource {
     if ([200, 304].contains(response.statusCode)) {
       final Map<String, dynamic> json = response.data;
       if (json["encoding"] == "base64") {
-        json["content"] = decodeBase64(json["content"] ?? "");
+        json["content"] = _decodeBase64(json["content"] ?? "");
       }
       return FileInfoModel.fromJson(json);
     }
@@ -45,7 +45,7 @@ class RemoteCodeDataSourceImpl implements RemoteCodeDataSource {
     return [];
   }
 
-  String decodeBase64(String code) {
+  String _decodeBase64(String code) {
     code = code.split("\n").join("");
     List<int> decodedBytes = base64Decode(code);
     try {

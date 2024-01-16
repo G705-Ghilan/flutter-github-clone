@@ -38,7 +38,7 @@ class RemoteReposDataSourceImpl implements RemoteReposDataSource {
   @override
   Future<Repos> getRepos(ReposParams params, [int page = 1]) async {
     final Response response = await client.dio.get(
-      getUrlByReposParams(params),
+      _getUrlByReposParams(params),
       queryParameters: {"page": page},
       options: await client.refreshIfConnectedOption(),
     );
@@ -59,7 +59,7 @@ class RemoteReposDataSourceImpl implements RemoteReposDataSource {
     throw NoUserException();
   }
 
-  String getUrlByReposParams(ReposParams params) {
+  String _getUrlByReposParams(ReposParams params) {
     switch (params.reposType) {
       case ReposType.userStarred:
         return "/users/${params.username}/starred";

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:github_clone/dependencies_injection.dart';
 import 'package:github_clone/src/features/issues/presentation/widgets/widgets.dart';
 import 'package:github_clone/src/src.dart';
 

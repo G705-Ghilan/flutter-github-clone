@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:github_clone/src/core/core.dart';
+import 'package:github_clone/dependencies_injection.dart';
 import 'package:github_clone/src/features/features.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';

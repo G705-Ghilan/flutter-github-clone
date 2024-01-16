@@ -14,7 +14,7 @@ class RemoteUsersDataSourceImpl implements RemoteUsersDataSource {
   @override
   Future<UsersModel> getUsers(UsersParams params, [int page = 1]) async {
     final response = await client.dio.get(
-      getQueryByUserType(params),
+      _getUrlByUserType(params),
       queryParameters: {"page": page},
       options: await client.refreshIfConnectedOption(),
     );
@@ -42,7 +42,7 @@ class RemoteUsersDataSourceImpl implements RemoteUsersDataSource {
     throw NoUserException();
   }
 
-  String getQueryByUserType(UsersParams params) {
+  String _getUrlByUserType(UsersParams params) {
     switch (params.usersType) {
       case UsersType.starred:
         return "/users/${params.username}/starred";

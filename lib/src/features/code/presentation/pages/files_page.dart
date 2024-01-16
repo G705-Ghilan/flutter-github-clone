@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/vs2015.dart';
+import 'package:github_clone/dependencies_injection.dart';
 import 'package:github_clone/src/core/core.dart';
 import 'package:github_clone/src/features/code/domain/domain.dart';
 import 'package:github_clone/src/features/code/presentation/bloc/code_bloc.dart';
