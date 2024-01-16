@@ -34,4 +34,22 @@ class ProfileModel extends Profile {
       following: json["following"],
     );
   }
+
+  Profile toEntity() {
+    return Profile(
+      login: login,
+      id: id,
+      avatarUrl: avatarUrl,
+      name: name,
+      blog: blog,
+      location: location,
+      bio: bio,
+      email: email,
+      createdAt: createdAt,
+      twitterUsername: twitterUsername,
+      repositories: repositories,
+      followers: followers,
+      following: following,
+    );
+  }
 }

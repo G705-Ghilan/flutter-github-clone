@@ -7,13 +7,13 @@ class UserProfileRepositoryImpl implements UserProfileRepository {
   final RemoteUserProfileDataSource remoteSource;
 
   UserProfileRepositoryImpl(this.remoteSource);
-  final Map<String, Profile> cachedUsers = {};
+  final Map<String, ProfileModel> cachedUsers = {};
 
   @override
   FailureOr<Profile> getUserProfile(String username) async {
     try {
       cachedUsers[username] ??= await remoteSource.getUserProfile(username);
-      return Right(cachedUsers[username]!);
+      return Right(cachedUsers[username]!.toEntity());
     } on DioException {
       return Left(NetworkFailure());
     } catch (e) {

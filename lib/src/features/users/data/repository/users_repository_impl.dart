@@ -11,10 +11,10 @@ class UsersRepositoryImpl implements UsersRepository {
   final Map<String, UsersModel> cached = {};
 
   @override
-  FailureOr<UsersModel> getUsers(UsersParams params) async {
+  FailureOr<Users> getUsers(UsersParams params) async {
     try {
       cached[params.key] ??= await remoteSource.getUsers(params);
-      return Right(cached[params.key]!);
+      return Right(cached[params.key]!.toEntity());
     } on DioException {
       return Left(NetworkFailure());
     } catch (e) {
@@ -23,7 +23,7 @@ class UsersRepositoryImpl implements UsersRepository {
   }
 
   @override
-  FailureOr<UsersModel> getMoreUsers(UsersParams params) async {
+  FailureOr<Users> getMoreUsers(UsersParams params) async {
     try {
       final current = cached[params.key]!;
       if (current.hasMore) {
@@ -36,7 +36,7 @@ class UsersRepositoryImpl implements UsersRepository {
           page: newFollowers.page,
           hasMore: newFollowers.hasMore,
         );
-        return Right(cached[params.key]!);
+        return Right(cached[params.key]!.toEntity());
       }
       return Right(current);
     } on DioException {

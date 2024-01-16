@@ -20,16 +20,16 @@ class RemoteUsersDataSourceImpl implements RemoteUsersDataSource {
     );
 
     if ([200, 304].contains(response.statusCode)) {
-      final followers = [
+      final users = [
         for (Map<String, dynamic> json in (params.usersType == UsersType.search
             ? response.data["items"]
             : response.data))
-          UserModel.fromJson(json)
+          UserModel.fromJson(json).toEntity()
       ];
       return UsersModel(
-        users: followers,
+        users: users,
         page: page,
-        hasMore: followers.length == 30,
+        hasMore: users.length == 30,
       );
     }
     if (response.statusCode == 204) {

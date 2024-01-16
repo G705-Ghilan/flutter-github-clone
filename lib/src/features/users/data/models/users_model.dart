@@ -6,4 +6,12 @@ class UsersModel extends Users {
     required super.page,
     required super.hasMore,
   });
+
+  Users toEntity() {
+    return Users(
+      users: <User>[...users],
+      page: page,
+      hasMore: hasMore,
+    );
+  }
 }

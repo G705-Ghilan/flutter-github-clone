@@ -14,4 +14,8 @@ class UserModel extends User {
       contributions: json["contributions"],
     );
   }
+
+  User toEntity() {
+    return User(name: name, avatarUrl: avatarUrl);
+  }
 }
