@@ -11,10 +11,10 @@ class UsersPage extends StatelessWidget {
   const UsersPage({
     super.key,
     required this.count,
-    required this.followParams,
+    required this.userParams,
   });
   final int? count;
-  final UsersParams followParams;
+  final UsersParams userParams;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,11 +22,10 @@ class UsersPage extends StatelessWidget {
       slivers: [
         CustomSliverAppBar(
           title: count != null
-              ? "${count!.str} ${followParams.usersType.eName}"
-              : followParams.usersType.eName,
-          subtitle: followParams.query ??
-              followParams.repository ??
-              followParams.username,
+              ? "${count!.str} ${userParams.usersType.eName}"
+              : userParams.usersType.eName,
+          subtitle:
+              userParams.query ?? userParams.repository ?? userParams.username,
         ),
         if (count == 0)
           const SliverFillRemaining(
@@ -39,7 +38,7 @@ class UsersPage extends StatelessWidget {
           BlocProvider(
             create: (context) => sl<UsersBloc>()
               ..add(
-                LoadUsersEvent(params: followParams),
+                LoadUsersEvent(params: userParams),
               ),
             child: BlocBuilder<UsersBloc, UsersState>(
               builder: (context, state) {
@@ -51,9 +50,9 @@ class UsersPage extends StatelessWidget {
                     ),
                   );
                 }
-                Users? follow;
+                Users? users;
                 if (state.users.users.isNotEmpty) {
-                  follow = state.users;
+                  users = state.users;
                 }
 
                 if (state.users.users.isEmpty && state is LoadedUsers) {
@@ -65,7 +64,7 @@ class UsersPage extends StatelessWidget {
                   );
                 }
                 final int length =
-                    (follow?.users.length ?? min(12, count ?? 12)) + 1;
+                    (users?.users.length ?? min(12, count ?? 12)) + 1;
                 return SliverPadding(
                   padding: kPadding,
                   sliver: SliverList.builder(
@@ -75,7 +74,7 @@ class UsersPage extends StatelessWidget {
                         if (state.users.hasMore) {
                           if (state is LoadedUsers) {
                             context.read<UsersBloc>().add(
-                                  LoadMoreUsersEvent(params: followParams),
+                                  LoadMoreUsersEvent(params: userParams),
                                 );
                           }
 
@@ -102,9 +101,9 @@ class UsersPage extends StatelessWidget {
                         return const SizedBox();
                       }
                       return ShimmerSkeletonizer(
-                        enabled: follow == null,
-                        child: FollowerItem(
-                          follower: follow?.users[index] ?? User.fake(),
+                        enabled: users == null,
+                        child: UserItem(
+                          user: users?.users[index] ?? User.fake(),
                         ),
                       );
                     },
@@ -125,12 +124,12 @@ class UsersPage extends StatelessWidget {
         children: [
           Text(
             count != null
-                ? "${count!.str} ${followParams.usersType.eName}"
-                : followParams.usersType.eName,
+                ? "${count!.str} ${userParams.usersType.eName}"
+                : userParams.usersType.eName,
             style: context.textTheme.titleMedium,
           ),
           Text(
-            followParams.repository ?? followParams.username,
+            userParams.repository ?? userParams.username,
             style: context.textTheme.labelSmall?.copyWith(
               color: context.colorScheme.onSurfaceVariant,
             ),

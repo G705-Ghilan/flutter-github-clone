@@ -51,7 +51,7 @@ final router = GoRouter(
         return CupertinoPage(
           key: state.pageKey,
           child: UsersPage(
-            followParams: UsersParams(
+            userParams: UsersParams(
               username: query["username"] ?? "",
               repository: query["repository"],
               query: query["query"],

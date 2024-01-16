@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:github_clone/src/src.dart';
 import 'package:go_router/go_router.dart';
 
-class FollowerItem extends StatelessWidget {
-  const FollowerItem({super.key, required this.follower});
-  final User follower;
+class UserItem extends StatelessWidget {
+  const UserItem({super.key, required this.user});
+  final User user;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class FollowerItem extends StatelessWidget {
       padding: EdgeInsets.zero,
       marign: const EdgeInsets.symmetric(vertical: 6),
       onTap: () {
-        context.push("/profile/${follower.name}");
+        context.push("/profile/${user.name}");
       },
       child: ListTile(
         leading: PrimaryContainer(
@@ -22,13 +22,13 @@ class FollowerItem extends StatelessWidget {
           child: CircleAvatar(
               backgroundColor: Colors.transparent,
               child: CustomImage(
-                url: follower.avatarUrl,
+                url: user.avatarUrl,
                 skeletonSize: 100,
               )),
         ),
-        title: Text(follower.name),
-        subtitle: follower.contributions != null
-            ? Text("${follower.contributions} Contributions")
+        title: Text(user.name),
+        subtitle: user.contributions != null
+            ? Text("${user.contributions} Contributions")
             : null,
       ),
     );

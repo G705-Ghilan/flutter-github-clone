@@ -56,6 +56,8 @@ This app integrates a variety of packages to enhance functionality:
 
 ```
 lib/
+├── dependencies_injection.dart
+├── github_clone_app.dart
 ├── main.dart
 └── src/
     ├── core/
@@ -75,21 +77,12 @@ lib/
     │   │   ├── datetime.dart
     │   │   ├── extensions.dart
     │   │   ├── num.dart
-    │   │   ├── shared_prefrences.dart
+    │   │   ├── shared_prefrences.dart  
     │   │   └── string.dart
     │   ├── loginfo/
     │   │   └── loginfo.dart
     │   ├── router/
     │   │   └── router.dart
-    │   ├── services/
-    │   │   ├── features/
-    │   │   │   ├── code.dart
-    │   │   │   ├── features.dart
-    │   │   │   ├── issues.dart
-    │   │   │   ├── repos.dart
-    │   │   │   ├── user_profile.dart
-    │   │   │   └── users.dart
-    │   │   └── services.dart
     │   ├── theme/
     │   │   └── theme.dart
     │   ├── typedefs.dart
@@ -260,7 +253,7 @@ lib/
     │       ├── data/
     │       │   ├── data.dart
     │       │   ├── datasources/
-    │       │   │   └── remote_follow_datasource.dart
+    │       │   │   └── remote_users_datasource.dart
     │       │   ├── models/
     │       │   │   ├── user_model.dart
     │       │   │   └── users_model.dart
@@ -282,13 +275,14 @@ lib/
     │       │   │   ├── users_event.dart
     │       │   │   └── users_state.dart
     │       │   ├── pages/
-    │       │   │   └── followers_page.dart
+    │       │   │   └── users_page.dart
     │       │   ├── presentation.dart
     │       │   └── widgets/
-    │       │       ├── follower_item.dart
+    │       │       ├── user_item.dart
     │       │       └── widgets.dart
     │       └── users.dart
     └── src.dart
+    
 ```
 
 

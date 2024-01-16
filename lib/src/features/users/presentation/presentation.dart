@@ -1,2 +1,2 @@
 export 'bloc/users_bloc.dart';
-export 'pages/followers_page.dart';
+export 'pages/users_page.dart';
